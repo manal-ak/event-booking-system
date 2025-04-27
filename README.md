@@ -60,16 +60,6 @@ It allows:
 
 ---
 
-## 📸 Screenshots
-
-> You can add screenshots later here like:
-> - Home page (Customer view)
-> - Admin Dashboard
-> - Event details
-> - Cart view
-> - Booking list
-
----
 
 ## 🚀 How to Run the Project Locally
 
