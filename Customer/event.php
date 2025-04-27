@@ -156,7 +156,7 @@ Swal.fire({
 
 <div class="container">
     <div class="event-img">
-        <img src="images/<?= $event['image'] ?>" alt="<?= $event['name'] ?>">
+    <img src="../images/<?= $event['image'] ?>">
     </div>
     <div class="event-details">
         <h2><?= htmlspecialchars($event['name']) ?></h2>

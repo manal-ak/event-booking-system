@@ -56,12 +56,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             padding: 20px;
             margin: 0;
         }
-        .container {
-            padding: 0 20px 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+        
         .card {
             background: white;
             border-radius: 12px;
@@ -90,6 +85,22 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display: none;
             cursor: pointer;
         }
+        .event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+        }
+
+        .event-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
         .card:hover .book-btn {
             display: block;
         }
@@ -128,10 +139,10 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </header>
 
 <h2>Available Events</h2>
-<div class="container">
+<div class="event-grid">
     <?php foreach ($events as $event): ?>
         <div class="card">
-            <img src="images/<?= $event['image'] ?>" alt="<?= htmlspecialchars($event['name']) ?>">
+        <img src="../images/<?= $event['image'] ?>">
             <div class="card-content">
                 <h3><?= htmlspecialchars($event['name']) ?></h3>
                 <p><?= $event['date'] ?></p>

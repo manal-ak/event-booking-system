@@ -26,10 +26,21 @@ if (!$event) {
     exit();
 }
 
-// Check if there are any bookings for this event
+// Check if there are any bookings
 $stmt = $conn->prepare("SELECT COUNT(*) FROM bookings WHERE event_id = ?");
 $stmt->execute([$event_id]);
 $bookings_count = $stmt->fetchColumn();
+
+// 🛠️ Handle the delete POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
+    if ($bookings_count == 0) {
+        // Delete the event
+        $stmt = $conn->prepare("DELETE FROM events WHERE id = ?");
+        $stmt->execute([$event_id]);
+    }
+    header('Location: manageEvents.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,8 +76,8 @@ $bookings_count = $stmt->fetchColumn();
                 <p style="color:red;">This event has bookings and cannot be deleted.</p>
                 <a href="manageEvents.php" class="delete-button" style="background-color:gray;">Back</a>
             <?php else: ?>
-                <form method="POST" action="performDelete.php?id=<?= $event_id ?>">
-                    <button type="submit" class="delete-button">Yes, Delete this Event</button>
+                <form method="POST">
+                    <button type="submit" name="confirm_delete" class="delete-button">Yes, Delete this Event</button>
                 </form>
             <?php endif; ?>
         </div>
