@@ -1,4 +1,7 @@
 <?php
+$success = '';
+$error = '';
+
 session_start();
 require_once 'includes/config.php';
 
@@ -27,9 +30,8 @@ if (!$event) {
     exit();
 }
 
-// Handle add-to-cart
-$success = '';
-$error = '';
+// Flags for popup
+$askClearCart = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantity = (int) ($_POST['quantity'] ?? 0);
@@ -39,11 +41,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($quantity > $event['max_tickets']) {
         $error = "Cannot book more than available tickets.";
     } else {
-        $_SESSION['cart'][$event_id] = $quantity;
-        $success = "Added to cart successfully!";
+        if (!empty($cart)) {
+            $existingEventId = array_keys($cart)[0];
+            if ($existingEventId != $event_id) {
+                // Set a flag to ask user
+                $askClearCart = true;
+                $_SESSION['pending_event'] = $event_id;
+                $_SESSION['pending_quantity'] = $quantity;
+            } else {
+                // Same event → update cart
+                $_SESSION['cart'][$event_id] = $quantity;
+                $success = "Cart updated successfully!";
+            }
+        } else {
+            // Cart empty → add new event
+            $_SESSION['cart'][$event_id] = $quantity;
+            $success = "Added to cart successfully!";
+        }
+    }
+}
+
+// Handle clear cart
+if (isset($_GET['action']) && $_GET['action'] == 'clear_and_add') {
+    if (isset($_SESSION['pending_event']) && isset($_SESSION['pending_quantity'])) {
+        $_SESSION['cart'] = [];
+        $_SESSION['cart'][$_SESSION['pending_event']] = $_SESSION['pending_quantity'];
+        unset($_SESSION['pending_event'], $_SESSION['pending_quantity']);
+        $success = "Cart cleared and new event added!";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,8 +110,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .success { color: green; }
         .error { color: red; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
+<?php if ($askClearCart): ?>
+<script>
+Swal.fire({
+  title: 'Another Event in Your Cart!',
+  text: "Do you want to discard your current cart and add this new event?",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#28a745',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, discard and add',
+  cancelButtonText: 'No, keep current'
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = "event.php?id=<?= $event_id ?>&action=clear_and_add";
+  }
+});
+</script>
+<?php endif; ?>
+
+
 
 <header>
     <a href="home.php" style="color:white; text-decoration:none; font-weight:bold;">
