@@ -56,7 +56,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             padding: 20px;
             margin: 0;
         }
-        
+
         .card {
             background: white;
             border-radius: 12px;
@@ -114,6 +114,17 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             header {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+        }
+        @media (max-width: 992px) {
+            .event-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 events per row on medium screens */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .event-grid {
+                grid-template-columns: 1fr; /* 1 event per row on small screens */
             }
         }
     </style>
