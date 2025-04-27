@@ -1,0 +1,317 @@
+/* event_booking_system.css  */
+
+/* General Styles  */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Forms  */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="number"],
+form input[type="datetime-local"],
+form input[type="email"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="file"] {
+    margin-bottom: 15px;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: #dc3545;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+/* Tables  */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Admin Interface  */
+.admin-panel {
+    display: flex;
+    min-height: 100vh;
+}
+
+.side-menu {
+    width: 250px;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 20px;
+}
+
+.side-menu h2 {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu li {
+    padding: 10px 0;
+    border-bottom: 1px solid #455a64;
+}
+
+.side-menu li:last-child {
+    border-bottom: none;
+}
+
+.side-menu a {
+    color: #f0f0f0;
+    display: block;
+    padding: 5px 0;
+}
+
+.side-menu a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #34495e;
+}
+
+.main-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.login-form {
+    width: 350px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.event-details {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.event-details p {
+    margin-bottom: 10px;
+}
+
+.event-details strong {
+    font-weight: bold;
+}
+
+.delete-confirmation {
+    background-color: #ffebee;
+    padding: 15px;
+    border: 1px solid #ef9a9a;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #c62828;
+}
+
+/* Customer Interface  */
+.header {
+    background-color: #3498db;
+    /* A different header color  */
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    color: #fff;
+}
+
+.header nav a {
+    color: #fff;
+    margin-left: 15px;
+}
+
+.main {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Event Grid  */
+.event-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* Distribute items evenly  */
+}
+
+.event-card {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    flex: 1 0 300px;
+    /* Adjust width as needed  */
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically  */
+    align-items: center;
+    position: relative;
+    /* For button animation  */
+    overflow: hidden;
+    /* Hide overflowing button  */
+}
+
+.event-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.book-now-button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: -40px;
+    /* Hidden initially  */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 0.3s ease-in-out;
+}
+
+.event-card:hover .book-now-button {
+    bottom: 10px;
+    /* Slide in on hover  */
+}
+
+/* Responsive Design  */
+@media screen and (max-width: 1024px) {
+    .event-grid {
+        justify-content: center;
+    }
+
+    .event-card {
+        flex-basis: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .event-card {
+        flex-basis: calc(100% - 20px);
+    }
+}
+
+/* Cart  */
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+}

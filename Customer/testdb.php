@@ -1,6 +1,6 @@
 <?php
 // Connect to database
-require_once 'includes/config.php';
+require_once '../includes/config.php';
 
 try {
     // Fetch all events from the database
