@@ -88,7 +88,7 @@ It allows:
     ```
 5. Open your browser and go to:
     - Customer: [http://localhost:8000/customer/index.php](http://localhost:8000/customer/index.php)
-    - Admin: [http://localhost:8000/admin/admin.php](http://localhost:8000/admin/admin.php)
+    - Admin: [http://localhost:8000/admin1/admin.php](http://localhost:8000/admin1/admin.php)
 
 ✅ Done!
 
